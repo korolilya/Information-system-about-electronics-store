@@ -18,11 +18,38 @@ namespace Information_system_in_electronics_store
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProductsWindow : Window
     {
-        public MainWindow()
+        List<Product> _products = new List<Product>();
+        public ProductsWindow()
         {
             InitializeComponent();
+        }
+
+        private void buttonNewProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AddingProductWindow();
+            if (window.ShowDialog().Value)
+            {
+                _products.Add(window.NewProduct);
+                RefreshListBox();
+            }
+
+        }
+
+        private void RefreshListBox ()
+        {
+            listBoxProducts.ItemsSource = null;
+            listBoxProducts.ItemsSource = _products;
+        }
+        // если нет товара, удаляем его из общего списка
+        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxProducts.SelectedIndex != -1)
+            {
+                _products.RemoveAt(listBoxProducts.SelectedIndex);
+                RefreshListBox();
+            }
         }
     }
 }
