@@ -13,11 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Information_system_in_electronics_store
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    
+
     public partial class ProductsWindow : Window
     {
         List<Product> _products = new List<Product>();
@@ -36,6 +39,8 @@ namespace Information_system_in_electronics_store
             }
 
         }
+        
+        //private ProductsWindow mainWindow = (ProductsWindow)Window.GetWindow();
 
         private void RefreshListBox ()
         {
@@ -51,5 +56,6 @@ namespace Information_system_in_electronics_store
                 RefreshListBox();
             }
         }
+     
     }
 }

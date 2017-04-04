@@ -10,6 +10,8 @@
         <Button x:Name="buttonNewProduct" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="50" Margin="20 0 0 20" Click="buttonNewProduct_Click">Добавить товар</Button>
         <Button x:Name="buttonRemove"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="50" Margin="0 0 20 20" IsEnabled="False" Click="buttonRemove_Click">Удалить товар</Button> 
         <ListBox x:Name="listBoxProducts" Margin="10 10 10 90" />
-
+        <Frame x:Name="Frame" Source="AuthorizationPage.xaml" Background="AntiqueWhite" NavigationUIVisibility="Hidden" Visibility="Visible"> 
+            
+        </Frame>
     </Grid>
 </Window>
