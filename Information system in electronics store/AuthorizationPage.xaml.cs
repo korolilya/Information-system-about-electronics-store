@@ -39,9 +39,11 @@ namespace Information_system_in_electronics_store
                 //NavigationService.Navigate(new Uri("/ProductsWindow.xaml", UriKind.Relative));
                 //NavigationService.Navigate(Pages);
                 //Visibility = 0; 
-                Visibility = Visibility.Hidden; //этот метод скрывает только элементы на странице
-                
-                 
+                //Visibility = Visibility.Hidden; //этот метод скрывает только элементы на странице
+                ProductsWindow products = new ProductsWindow();
+                //products.Show();
+                AuthorizationPage ap = new AuthorizationPage();
+                NavigationService.Navigate(new Uri("products.xaml", UriKind.Relative));
             }
         }
     }

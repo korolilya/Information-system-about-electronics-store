@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 
 namespace Information_system_in_electronics_store
@@ -23,6 +24,7 @@ namespace Information_system_in_electronics_store
 
     public partial class ProductsWindow : Window
     {
+        const string FileName = "ListOfProducts.txt";
         List<Product> _products = new List<Product>();
         public ProductsWindow()
         {
@@ -56,6 +58,16 @@ namespace Information_system_in_electronics_store
                 RefreshListBox();
             }
         }
-     
+
+        private void SaveData()
+        {
+            using (var sw = new StreamWriter(FileName))
+            {
+                foreach (var product in _products)
+                {
+                    //sw.WriteLine($"{product.Type} - {product.Firm} - {product.Model} - {product.Quantity} - {product.Availability}");
+                }
+            }
+        }
     }
 }

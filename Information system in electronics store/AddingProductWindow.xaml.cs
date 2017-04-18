@@ -30,6 +30,52 @@ namespace Information_system_in_electronics_store
             get { return _newProduct; }
           
         }
+       
 
+        private void Addbutton_Click(object sender, RoutedEventArgs e)
+        {
+            int quantity;
+            //string availability;
+            
+           if (string.IsNullOrWhiteSpace(textBoxType.Text))
+            {
+                MessageBox.Show("Укажите тип товара");
+                textBoxType.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBoxFirm.Text))
+            {
+                MessageBox.Show("Укажите фирму");
+                textBoxFirm.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBoxModel.Text))
+            {
+                MessageBox.Show("Укажите модель товара");
+                textBoxModel.Focus();
+                return;
+            }
+
+            if (!int.TryParse(textBoxQuantity.Text, out quantity))
+            {
+                MessageBox.Show("Укажите количество товара (впишите целое число)");
+                textBoxQuantity.Focus();
+                return;
+            }
+
+            if (quantity<0)
+            {
+                MessageBox.Show("Укажите количество товара (впишите целое ПОЛОЖИТЕЛЬНОЕ число)");
+                textBoxQuantity.Focus();
+                return;
+            }
+            //if (quantity == 0)
+            //{ availability = "Товара нет";
+            //} 
+            //_newProduct = new Product(textBoxType, textBoxFirm, textBoxModel, textBoxQuantity, availability );
+            DialogResult = true;
+        }
     }
 }

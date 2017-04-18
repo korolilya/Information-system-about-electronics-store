@@ -52,10 +52,10 @@ namespace Information_system_in_electronics_store
             {
                 if (Quantity != 0)
                 {
-                    Availability = "товар есть в наличии";
+                    Availability = "Товар есть в наличии";
                 } //_availability = value; }
                 else
-                { Availability = "товара нет в наличии"; } }
+                { Availability = "Товара нет в наличии"; } }
         }
 
         public Product(string type, string firm, string model, int quantity, string availability)

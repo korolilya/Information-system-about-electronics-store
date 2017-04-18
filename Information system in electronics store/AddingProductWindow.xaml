@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Information_system_in_electronics_store"
         Title="Добавьте новый товар" Height="300" Width="600" Background="AntiqueWhite">
     <Grid>
-        <Button x:Name="Addbutton" Content="Добавить новый товар" HorizontalAlignment="Left" Margin="200,170,200,20" VerticalAlignment="Bottom" Width="190" Height="50"/>
+        <Button x:Name="Addbutton" Content="Добавить новый товар" HorizontalAlignment="Left" Margin="200,170,200,20" VerticalAlignment="Bottom" Width="190" Height="50" Click="Addbutton_Click"/>
         <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Height="23" Margin="84,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxFirm" HorizontalAlignment="Left" Height="23" Margin="84,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxModel" HorizontalAlignment="Left" Height="23" Margin="357,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

@@ -26,10 +26,14 @@ namespace Information_system_in_electronics_store
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (UsernameBox.Text == "Ilya" && passwordBox.Password == "1998")
-            {
-               
+            
 
+            if (UsernameBox.Text == "Ilya" && passwordBox.Password == "1998")
+            {               
+            
+                ProductsWindow products = new ProductsWindow();
+                products.Show();
+                this.Close();
             }
         }
     }
