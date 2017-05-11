@@ -41,9 +41,18 @@ namespace Information_system_in_electronics_store
             set { _quantity = value; }
         }
 
+        private Country _country;
+
+        public Country Country
+        {
+            get { return _country; }
+            set { _country = value; }
+        }
+
+
 
         // в наличии или нет в наличии 
-        private string _availability;
+        /*private string _availability;
 
         public string Availability
         {
@@ -56,16 +65,54 @@ namespace Information_system_in_electronics_store
                 } //_availability = value; }
                 else
                 { Availability = "Товара нет в наличии"; } }
-        }
+        }*/
 
-        public Product(string type, string firm, string model, int quantity, string availability)
+        public Product(string type, string firm, string model, int quantity)
         {
             _type = type;
             _firm = firm;
             _model = model;
             _quantity = quantity;
-            _availability = availability;
+            //_availability = availability;
         }
+
+        public string Information
+        {
+            get
+            {
+               // return $"{_type}-{_firm}-{_model}-{_quantity}-{_country.Name}";
+                return $"{_type}-{_firm}-{_model}-{_country.Name}-{_quantity}";
+            }
+        }
+
+        #region DynamicSearch
+        public string InfType
+        {
+            get { return $"{_type}"; }
+        }
+
+        public string InfFirm
+        {
+            get { return $"{_firm}"; }
+        }
+
+        public string InfModel
+        {
+            get { return $"{_model}"; }
+        }
+
+        public string InfQuant
+        {
+            get { return $"{_quantity}"; }
+        }
+
+        public string InfCountry
+        {
+            get { return $"{_country.Name}"; }
+        }
+        #endregion
+
+
 
 
 

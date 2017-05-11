@@ -8,8 +8,10 @@
         Title="Имеющиеся товары" Height="500" Width="500">
     <Grid Background="AntiqueWhite">
         <Button x:Name="buttonNewProduct" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="50" Margin="20 0 0 20" Click="buttonNewProduct_Click">Добавить товар</Button>
-        <Button x:Name="buttonRemove"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="50" Margin="0 0 20 20" IsEnabled="False" Click="buttonRemove_Click">Удалить товар</Button> 
-        <ListBox x:Name="listBoxProducts" Margin="10 10 10 90" />
-      
+        <Button x:Name="buttonRemove"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="50" Margin="0 0 20 20" IsEnabled="False" Click="buttonRemove_Click">Удалить товар</Button>
+        <ListBox x:Name="listBoxProducts" DisplayMemberPath="Information" Margin="10 70 10 90" SelectionChanged="listBoxProducts_SelectionChanged" />
+        <Label x:Name="labelSearch" Content="Поиск:" HorizontalAlignment="Left" Margin="10 24 0 0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxSearch" HorizontalAlignment="Left" Height="23" Margin="62 27 0 0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="378" TextChanged="textBoxSearch_TextChanged"/>
+
     </Grid>
 </Window>

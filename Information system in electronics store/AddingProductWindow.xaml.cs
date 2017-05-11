@@ -19,9 +19,10 @@ namespace Information_system_in_electronics_store
     /// </summary>
     public partial class AddingProductWindow : Window
     {
-        public AddingProductWindow()
+        public AddingProductWindow(List<Country> countries)
         {
             InitializeComponent();
+            comboBoxCountries.ItemsSource = countries;
         }
         Product _newProduct;
 
@@ -35,7 +36,7 @@ namespace Information_system_in_electronics_store
         private void Addbutton_Click(object sender, RoutedEventArgs e)
         {
             int quantity;
-            //string availability;
+            
             
            if (string.IsNullOrWhiteSpace(textBoxType.Text))
             {
@@ -65,16 +66,22 @@ namespace Information_system_in_electronics_store
                 return;
             }
 
-            if (quantity<0)
+            if (quantity<0 || quantity == 0)
             {
                 MessageBox.Show("Укажите количество товара (впишите целое ПОЛОЖИТЕЛЬНОЕ число)");
                 textBoxQuantity.Focus();
                 return;
             }
-            //if (quantity == 0)
-            //{ availability = "Товара нет";
-            //} 
-            //_newProduct = new Product(textBoxType, textBoxFirm, textBoxModel, textBoxQuantity, availability );
+
+            if(comboBoxCountries.SelectedItem == null)
+            {
+                MessageBox.Show("Выберете страну-производителя");
+                comboBoxCountries.Focus();
+                return;
+            }
+            
+            _newProduct = new Product(textBoxType.Text, textBoxFirm.Text, textBoxModel.Text, quantity);
+            _newProduct.Country = comboBoxCountries.SelectedItem as Country;
             DialogResult = true;
         }
     }
