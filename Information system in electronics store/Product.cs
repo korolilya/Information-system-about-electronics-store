@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace Information_system_in_electronics_store
 {
-   public class Product
+   
+    public class Product
     {
         private string _type;
 
+      
         public string Type
         {
             get { return _type; }
@@ -18,6 +22,7 @@ namespace Information_system_in_electronics_store
 
         private string _firm;
 
+      
         public string Firm
         {
             get { return _firm; }
@@ -27,6 +32,7 @@ namespace Information_system_in_electronics_store
 
         private string _model;
 
+       
         public string Model
         {
             get { return _model; }
@@ -35,6 +41,7 @@ namespace Information_system_in_electronics_store
 
         private int _quantity;
 
+       
         public int Quantity
         {
             get { return _quantity; }
@@ -43,6 +50,7 @@ namespace Information_system_in_electronics_store
 
         private Country _country;
 
+       
         public Country Country
         {
             get { return _country; }

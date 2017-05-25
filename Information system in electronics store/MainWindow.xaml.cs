@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-
+using System.Runtime.Serialization.Json;
+using System.Data.SQLite;
 
 namespace Information_system_in_electronics_store
 {
@@ -24,23 +25,40 @@ namespace Information_system_in_electronics_store
 
     public partial class ProductsWindow : Window
     {
-        const string FileName = "ListOfProducts.txt";
-        List<Product> _products = new List<Product>();
-        List<Country> _countries = new List<Country>();
+       // const string FileName = "ListOfProducts.txt";
+       // List<Product> _products = new List<Product>();
+       // List<Country> _countries = new List<Country>();
+        
+
+       
+        
         public ProductsWindow()
         {
             InitializeComponent();
-            LoadData();
-            RefreshListBox();
+            frameMainWindow.NavigationService.Navigate(Pages.LoginPage);
+            try
+            {
+                SQLiteConnection sqlite_conn;
+                SQLiteCommand sqlite_cmd;
+                SQLiteDataReader sqlite_datareader;
+                sqlite_conn = new SQLiteConnection("Data Source=database.db;Version=3;New = true; Compress=True;");
+                sqlite_conn.Open();
+                sqlite_cmd = sqlite_conn.CreateCommand();
+                sqlite_cmd.CommandText = "CREATE TABLE users (id integer primary key, username varchar(100), password varchar(100));";
+                sqlite_cmd.ExecuteNonQuery();
+                sqlite_cmd.CommandText = "INSERT INTO users (id, username, password) VALUES (1, 'Ben', 'QaZ12345');";
+                sqlite_cmd.ExecuteNonQuery();
+            }
+            catch { }
         }
 
-        private void RefreshListBox()
+      /*  private void RefreshListBox()
         {
             listBoxProducts.ItemsSource = null;
             listBoxProducts.ItemsSource = _products;
         }
 
-        private void buttonNewProduct_Click(object sender, RoutedEventArgs e)
+        public void buttonNewProduct_Click(object sender, RoutedEventArgs e)
         {
             var window = new AddingProductWindow(_countries);
             if (window.ShowDialog().Value)
@@ -56,7 +74,7 @@ namespace Information_system_in_electronics_store
 
      
         // если нет товара, удаляем его из общего списка
-        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        public void buttonRemove_Click(object sender, RoutedEventArgs e)
         {
             if (listBoxProducts.SelectedIndex != -1)
             {
@@ -82,6 +100,10 @@ namespace Information_system_in_electronics_store
                     //sw.WriteLine($"{product.Type} - {product.Firm} - {product.Model} - {product.Quantity}");
                 }
             }
+
+           
+
+                  
         }
 
         private void LoadData() // !ПРОВЕРЬ ЭТО НЕСКОЛЬКО РАЗ!
@@ -140,6 +162,8 @@ namespace Information_system_in_electronics_store
             RefreshListBox();
         }
 
+        //поиск в листбоксе
+
         private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string text = textBoxSearch.Text;
@@ -170,10 +194,85 @@ namespace Information_system_in_electronics_store
             return tmp;
         }
 
-        //поиск в листбоксе
+        #region Json
+        public void JsonSerializer()
+        {
+            _products = new List<Product>();
+            _countries = new List<Country>();
+            var window = new AddingProductWindow(_countries);
+            _products.Add(window.NewProduct);
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Product));
+
+            using (FileStream fs = new FileStream("people.json", FileMode.OpenOrCreate))
+            {
+                jsonFormatter.WriteObject(fs, _products);
+            }
+        }
 
 
 
 
+
+
+
+         private void JSONSerialize(Product objStudent)
+         {
+             MemoryStream stream = new MemoryStream();
+             DataContractJsonSerializer jsonSer = new DataContractJsonSerializer(typeof(Product));
+             jsonSer.WriteObject(stream, objStudent);
+             stream.Position = 0;
+             StreamReader sr = new StreamReader(stream);
+              = sr.ReadToEnd();
+         }
+        #endregion
+
+        private void buttonSerialize_Click(object sender, RoutedEventArgs e)
+        {
+            _products = new List<Product>();
+            _countries = new List<Country>();
+            var window = new AddingProductWindow(_countries);
+            _products.Add(window.NewProduct);
+            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Product));
+
+            using (FileStream fs = new FileStream("people.json", FileMode.OpenOrCreate))
+            {
+                jsonFormatter.WriteObject(fs, _products);
+            }
+            using (FileStream fs = new FileStream("people.json", FileMode.OpenOrCreate))
+            {
+
+               
+                /*Product newproduct = (Product)jsonFormatter.ReadObject(fs);
+                foreach (var Product in newproduct)
+                {
+                    MessageBox.Show("Фирма: {0} --- Возраст: {1}", p.Name, p.Age);
+                }*/
+           // }
+        //}
+
+      /*  public void buttonAuthorization_Click(object sender, RoutedEventArgs e)
+        {
+            LogInWindow login = new LogInWindow();
+            login.Show();
+            this.Close();
+
+        }
+
+        private void buttonRedact_Click(object sender, RoutedEventArgs e)
+        {
+
+            var window = new AddingProductWindow(_countries);
+            window.AddingProductInfo();
+            if (window.ShowDialog().Value)
+            {
+                //_products.Add(window.NewProduct);
+               // window.AddingProductInfo();
+                SaveData();
+                RefreshListBox();
+                
+                
+            }
+
+        }*/
     }
 }
