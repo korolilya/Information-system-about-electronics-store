@@ -19,7 +19,7 @@ namespace Information_system_in_electronics_store
 
         public static LoginPage LoginPage
         {
-            get { return _loginPage; }
+            get {return _loginPage;}
             
         }
 
